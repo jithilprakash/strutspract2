@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.i18n.encoding" value="UTF-8" />  
+  <package name="one" namespace="/" extends="struts-default">
+      
+        <global-results>  
+            <result name="begin">/login.jsp</result>  
+        </global-results>  
+    <action name="login" class="com.action.LoginAction">
+         <result name="aaa" type="redirectAction">${prePage}</result>
+        <result name="success">/add.jsp</result>
+        <result name="error">/login_error.jsp</result>
+    </action>
+      <action name="canlcelogin" class="com.action.CancelLoginAction">
+        <result name="success">/index.jsp</result>
+        <result name="error">/login_error.jsp</result>
+    </action>
+    <action name="cancelUser" class="com.action.CancelUserAction">
+        <result name="success">/manage.jsp</result>
+    </action>
+       <action name="adminlogin" class="com.action.AdminLoginAction">
+        <result name="success">/manage.jsp</result>
+        <result name="error">/login_error.jsp</result>
+    </action> 
+    <action name="register" class="com.action.RegisterAction">
+       <result name="success">/index.jsp</result>
+       <result name="error">/register_error.jsp</result>
+    </action>
+      <action name="adminregister" class="com.action.AdminRegisterAction">
+       <result name="success">/index.jsp</result>
+       <result name="error">/register_error.jsp</result>
+    </action>
+    <action name="delete" class="com.action.DeleteAction">
+       <result name="success">/show.jsp</result>
+    </action>
+        <action name="add" class="com.action.AddAction">
+       <result name="success">/show.jsp</result>
+    </action>
+      <action name="rand" class="com.action.RandomPictureAction">  
+            <result type="stream">  
+                <param name="contentType">image/jpeg</param>  
+                <param name="inputName">inputStream</param>  
+            </result>  
+      </action>  
+      <action name="show" class="com.action.ShowAction">  
+            <result name="success">show.jsp</result>  
+           <result name="error">/show_error.jsp</result>  
+     </action>  
+     <action name="upImage" class="com.action.UpImageAction">
+           <param name="savePath">/file</param>
+           <result name="success">/register.jsp</result>
+           <result name="input">/register.jsp</result>
+           <interceptor-ref name="fileUpload">
+                 <param name="maximumSize">500000</param>
+               <param name="allowedTypes">
+                   image/bmp,image/png,image/gif,image/jpeg,image/pjpeg,image/x-png
+             </param> 
+                     <param name="fileUpload.allowedExtensions">jpg</param>
+            </interceptor-ref>
+          <interceptor-ref name="defaultStack" />
+    </action>
+    <action name="totalPrice" class="com.action.TotalPriceAction">
+        <result>/totalPrice.jsp</result>
+    </action>
+  </package>
+</struts>    
